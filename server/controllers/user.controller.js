@@ -9,7 +9,7 @@ export default class UserControls {
    * Register a user
    * @param {object} req
    * @param {object} res
-   * @returns {object} registration status object
+   * @returns {object} registration status, data object
    */
   static async register(req, res) {
     // assuming that inputs coming in are already deeply validated by the client
@@ -28,7 +28,7 @@ export default class UserControls {
    * Input from client: { id = Number, homeLocation = Number }
    * @param {object} req
    * @param {object} res
-   * @returns {object} home location status object
+   * @returns {object} status, updated user object
    */
   static async updateHomeLocation(req, res) {
     try {
@@ -61,7 +61,7 @@ export default class UserControls {
    * Input from client: { id = Number, currentLocation = Number }
    * @param {object} req
    * @param {object} res
-   * @returns {object} current location status object
+   * @returns {object} status, updated user object
    */
   static async updateCurrentLocation(req, res) {
     try {
@@ -122,7 +122,7 @@ export default class UserControls {
    * Update home security status
    * @param {object} req
    * @param {object} res
-   * @returns {object} home security status object
+   * @returns {object} status, updated user object
    */
   static async homeSecured(req, res) {
     try {
