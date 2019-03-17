@@ -52,7 +52,7 @@ export default class UserControls {
         message: message.updatedHome
       });
     } catch {
-      return helper.error;
+      return res.status(500).json({ message: message.error });
     }
   }
 
@@ -114,7 +114,7 @@ export default class UserControls {
         });
       }
     } catch {
-      return helper.error;
+      return res.status(500).json({ message: message.error });
     }
   }
 
@@ -140,7 +140,7 @@ export default class UserControls {
         message: message.securedHome
       });
     } catch {
-      return helper.error;
+      return res.status(500).json({ message: message.error });
     }
   }
 }
