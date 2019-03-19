@@ -33,12 +33,40 @@ export default (sequelize, DataTypes) => {
         }
       },
       homeLocation: {
-        allowNull: true,
-        type: DataTypes.GEOMETRY("POINT")
+        allowNull: false,
+        type: DataTypes.JSON,
+        validate: {
+          isValidCoords: value => {
+            if (
+              typeof value.latitude !== "number" ||
+              typeof value.longitude !== "number"
+            ) {
+              throw new Error("Invalid coordinates input");
+            }
+          }
+        },
+        defaultValue: {
+          latitude: 0,
+          longitude: 0
+        }
       },
       lastLocation: {
-        allowNull: true,
-        type: DataTypes.GEOMETRY("POINT")
+        allowNull: false,
+        type: DataTypes.JSON,
+        validate: {
+          isValidCoords: value => {
+            if (
+              typeof value.latitude !== "number" ||
+              typeof value.longitude !== "number"
+            ) {
+              throw new Error("Invalid coordinates input");
+            }
+          }
+        },
+        defaultValue: {
+          latitude: 0,
+          longitude: 0
+        }
       },
       isHomeSecured: {
         type: DataTypes.BOOLEAN,

@@ -1,4 +1,5 @@
 const message = {
+  error: "Some error",
   invalidInput: "Invalid input",
   registered: "User successfully register",
   updatedHome: "Home location successfully update",

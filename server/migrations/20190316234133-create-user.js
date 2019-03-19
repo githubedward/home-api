@@ -19,11 +19,11 @@ module.exports = {
       },
       homeLocation: {
         allowNull: true,
-        type: Sequelize.GEOMETRY("POINT")
+        type: Sequelize.JSON
       },
       lastLocation: {
         allowNull: true,
-        type: Sequelize.GEOMETRY("POINT")
+        type: Sequelize.JSON
       },
       isHomeSecured: {
         type: Sequelize.BOOLEAN
