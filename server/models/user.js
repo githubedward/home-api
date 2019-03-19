@@ -33,12 +33,12 @@ export default (sequelize, DataTypes) => {
         }
       },
       homeLocation: {
-        type: DataTypes.INTEGER,
-        defaultValue: 0
+        allowNull: true,
+        type: DataTypes.GEOMETRY("POINT")
       },
       lastLocation: {
-        type: DataTypes.INTEGER,
-        defaultValue: 0
+        allowNull: true,
+        type: DataTypes.GEOMETRY("POINT")
       },
       isHomeSecured: {
         type: DataTypes.BOOLEAN,

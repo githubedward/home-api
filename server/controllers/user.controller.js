@@ -32,11 +32,14 @@ export default class UserControls {
    */
   static async updateHomeLocation(req, res) {
     try {
-      const { id } = req.body;
-      let { homeLocation } = req.body;
-      if (!homeLocation || !id)
+      const { id, latitude, longitude } = req.body;
+      if (!latitude || !longitude || !id)
         return res.status(401).json({ message: message.invalidInput });
-      homeLocation = Number(homeLocation);
+      const homeLocation = {
+        type: "Point",
+        coordinates: [Number(latitude), Number(longitude)]
+      };
+      console.log(homeLocation);
       // retrieve user from DB
       const user = await User.findOne({
         where: { id },
@@ -46,6 +49,8 @@ export default class UserControls {
       const updatedUser = await user.update({
         homeLocation
       });
+      console.log(homeLocation);
+
       // send response to client
       return res.status(200).json({
         data: updatedUser.dataValues,
@@ -65,9 +70,13 @@ export default class UserControls {
    */
   static async updateCurrentLocation(req, res) {
     try {
-      const { id } = req.body;
+      const { id, latitude, longitude } = req.body;
+      const lastLocation = {
+        latitude,
+        longitude
+      };
       // parse to Number
-      const lastLocation = Number(req.body.currentLocation);
+      // const lastLocation = Number(req.body.currentLocation);
       // retrieved user from DB
       const user = await User.findOne({
         where: { id },

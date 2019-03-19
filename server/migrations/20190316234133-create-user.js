@@ -18,10 +18,12 @@ module.exports = {
         unique: true
       },
       homeLocation: {
-        type: Sequelize.INTEGER
+        allowNull: true,
+        type: Sequelize.GEOMETRY("POINT")
       },
       lastLocation: {
-        type: Sequelize.INTEGER
+        allowNull: true,
+        type: Sequelize.GEOMETRY("POINT")
       },
       isHomeSecured: {
         type: Sequelize.BOOLEAN
