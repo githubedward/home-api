@@ -118,13 +118,8 @@ export default class UserControls {
           message: message.notSecuredHome
         });
       }
-<<<<<<< HEAD
-    } catch {
-      return res.status(500).json({ message: message.error });
-=======
     } catch (err) {
       return res.status(401).json(err);
->>>>>>> feature/geoloc
     }
   }
 
@@ -150,11 +145,7 @@ export default class UserControls {
         message: message.securedHome
       });
     } catch {
-<<<<<<< HEAD
       return res.status(500).json({ message: message.error });
-=======
-      return res.status(501).json(message.error);
->>>>>>> feature/geoloc
     }
   }
 }
