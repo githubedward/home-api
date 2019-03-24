@@ -32,11 +32,13 @@ export default class UserControls {
    */
   static async updateHomeLocation(req, res) {
     try {
-      const { id } = req.body;
-      let { homeLocation } = req.body;
-      if (!homeLocation || !id)
+      const { id, latitude, longitude } = req.body;
+      if (!latitude || !longitude || !id)
         return res.status(401).json({ message: message.invalidInput });
-      homeLocation = Number(homeLocation);
+      const homeLocation = {
+        latitude: parseFloat(latitude),
+        longitude: parseFloat(longitude)
+      };
       // retrieve user from DB
       const user = await User.findOne({
         where: { id },
@@ -51,8 +53,8 @@ export default class UserControls {
         data: updatedUser.dataValues,
         message: message.updatedHome
       });
-    } catch {
-      return res.status(500).json({ message: message.error });
+    } catch (err) {
+      return res.status(401).json(err);
     }
   }
 
@@ -65,9 +67,13 @@ export default class UserControls {
    */
   static async updateCurrentLocation(req, res) {
     try {
-      const { id } = req.body;
-      // parse to Number
-      const lastLocation = Number(req.body.currentLocation);
+      const { id, latitude, longitude } = req.body;
+      if (!latitude || !longitude || !id)
+        return res.status(401).json({ message: message.invalidInput });
+      const lastLocation = {
+        latitude: parseFloat(latitude),
+        longitude: parseFloat(longitude)
+      };
       // retrieved user from DB
       const user = await User.findOne({
         where: { id },
@@ -75,7 +81,6 @@ export default class UserControls {
       });
       const { homeLocation, isHomeSecured } = user.dataValues;
       const isUserHome = helper.isHome(homeLocation, lastLocation);
-
       // if user is home and home is secured
       // change isHomeSecured to false & send secured status to client
       if (isUserHome && isHomeSecured) {
@@ -113,8 +118,13 @@ export default class UserControls {
           message: message.notSecuredHome
         });
       }
+<<<<<<< HEAD
     } catch {
       return res.status(500).json({ message: message.error });
+=======
+    } catch (err) {
+      return res.status(401).json(err);
+>>>>>>> feature/geoloc
     }
   }
 
@@ -140,7 +150,11 @@ export default class UserControls {
         message: message.securedHome
       });
     } catch {
+<<<<<<< HEAD
       return res.status(500).json({ message: message.error });
+=======
+      return res.status(501).json(message.error);
+>>>>>>> feature/geoloc
     }
   }
 }

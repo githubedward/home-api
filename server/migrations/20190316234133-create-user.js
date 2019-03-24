@@ -18,10 +18,12 @@ module.exports = {
         unique: true
       },
       homeLocation: {
-        type: Sequelize.INTEGER
+        allowNull: false,
+        type: Sequelize.JSON
       },
       lastLocation: {
-        type: Sequelize.INTEGER
+        allowNull: false,
+        type: Sequelize.JSON
       },
       isHomeSecured: {
         type: Sequelize.BOOLEAN
@@ -36,7 +38,7 @@ module.exports = {
       }
     });
   },
-  down: (queryInterface, Sequelize) => {
+  down: (queryInterface /* , Sequelize */) => {
     return queryInterface.dropTable("Users");
   }
 };

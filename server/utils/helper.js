@@ -1,3 +1,5 @@
+import geolib from "geolib";
+
 /**
  *
  * @param {integer} home
@@ -5,6 +7,6 @@
  * @return {bool} if home
  */
 export const isHome = (home, curr) => {
-  const value = curr - home;
-  return -200 < value && value < 200;
+  const value = geolib.getDistance(curr, home, 1);
+  return value < 200;
 };

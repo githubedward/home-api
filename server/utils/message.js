@@ -1,5 +1,5 @@
 const message = {
-  error: "Server is not responding",
+  error: "Some error",
   invalidInput: "Invalid input",
   registered: "User successfully register",
   updatedHome: "Home location successfully updated",
