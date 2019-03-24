@@ -7,7 +7,7 @@ export default (sequelize, DataTypes) => {
         type: DataTypes.STRING,
         allowNull: {
           args: false,
-          msg: "Please enter your username"
+          msg: "Please enter your name"
         },
         validate: {
           isValidLength: value => {
