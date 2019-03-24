@@ -18,11 +18,11 @@ module.exports = {
         unique: true
       },
       homeLocation: {
-        allowNull: true,
+        allowNull: false,
         type: Sequelize.JSON
       },
       lastLocation: {
-        allowNull: true,
+        allowNull: false,
         type: Sequelize.JSON
       },
       isHomeSecured: {
@@ -38,7 +38,7 @@ module.exports = {
       }
     });
   },
-  down: (queryInterface, Sequelize) => {
+  down: (queryInterface /* , Sequelize */) => {
     return queryInterface.dropTable("Users");
   }
 };
